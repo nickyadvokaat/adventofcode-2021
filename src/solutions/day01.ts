@@ -1,9 +1,7 @@
-import * as fs from "fs"
+import {readFile} from "../util/fileUtil"
 
 export default function day01() {
-    const file = fs
-        .readFileSync("data/day01.txt", "utf8")
-        .split("\r\n")
+    const file = readFile("01")
         .map((x: string) => Number(x)) as [number]
     console.log(depthMeasurement(file, 1))
     console.log(depthMeasurement(file, 3))

@@ -1,4 +1,4 @@
-import * as fs from "fs"
+import {readFile} from "../util/fileUtil"
 
 interface ISubCommand {
     instruction: string
@@ -6,9 +6,7 @@ interface ISubCommand {
 }
 
 export default function day02() {
-    const commands = fs
-        .readFileSync("data/day02-test.txt", "utf8")
-        .split("\r\n")
+    const commands = readFile("02")
         .map((x: string) => x.split(' '))
         .map(x => ({
             instruction: x[0],

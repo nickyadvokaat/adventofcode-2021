@@ -1,9 +1,7 @@
-import * as fs from "fs"
+import {readFile} from "../util/fileUtil"
 
 export default function day03() {
-    const binaryNumbers = fs
-        .readFileSync("data/day03.txt", "utf8")
-        .split("\r\n")
+    const binaryNumbers = readFile("03")
 
     const totals = Array<number>(binaryNumbers[0].length).fill(0)
     binaryNumbers.forEach(x => {
