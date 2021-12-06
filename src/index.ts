@@ -1,7 +1,3 @@
-import day01 from "./solutions/day01"
-import day02 from "./solutions/day02"
-import day03 from "./solutions/day03"
+import day06 from "./solutions/day06"
 
-day01()
-day02()
-day03()
+day06()
