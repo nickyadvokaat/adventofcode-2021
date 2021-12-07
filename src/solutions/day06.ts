@@ -1,5 +1,6 @@
 import {readFile} from "../util/fileUtil"
 
+/* istanbul ignore next */
 export default function day06() {
     const startPopulation = readFile("06")[0].split(',').map(x => Number(x))
     console.log(numberOfFish(startPopulation, 80))

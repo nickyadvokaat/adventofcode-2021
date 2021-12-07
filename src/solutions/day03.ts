@@ -1,5 +1,6 @@
 import {readFile} from "../util/fileUtil"
 
+/* istanbul ignore next */
 export default function day03() {
     const binaryNumbers = readFile("03-test")
     console.log(powerConsumption(binaryNumbers))

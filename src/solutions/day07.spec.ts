@@ -7,6 +7,6 @@ describe("CalculateMinimalFuel", () => {
         expect(calculateMinimalFuel(testData, true)).toBe(37)
     })
     it("should calculate increasing fuel usage", () => {
-        expect(calculateMinimalFuel(testData, false)).toBe(168)
+        expect(calculateMinimalFuel(testData)).toBe(168)
     })
 })

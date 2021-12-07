@@ -1,5 +1,6 @@
 import {readFile} from "../util/fileUtil"
 
+/* istanbul ignore next */
 export default function day01() {
     const file = readFile("01")
         .map((x: string) => Number(x)) as [number]

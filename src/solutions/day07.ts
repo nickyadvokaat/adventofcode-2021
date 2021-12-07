@@ -1,5 +1,6 @@
 import {readFile} from "../util/fileUtil"
 
+/* istanbul ignore next */
 export default function day07() {
     const positions = readFile("07")[0].split(',').map(x => Number(x))
     console.log(calculateMinimalFuel(positions, true))
