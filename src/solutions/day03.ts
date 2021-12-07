@@ -1,8 +1,12 @@
 import {readFile} from "../util/fileUtil"
 
 export default function day03() {
-    const binaryNumbers = readFile("03")
+    const binaryNumbers = readFile("03-test")
+    console.log(powerConsumption(binaryNumbers))
+    console.log(lifeSupportRating(binaryNumbers))
+}
 
+export function powerConsumption(binaryNumbers: string[]): number {
     const totals = Array<number>(binaryNumbers[0].length).fill(0)
     binaryNumbers.forEach(x => {
             x.split('').forEach((value, index) => {
@@ -17,8 +21,10 @@ export default function day03() {
         gamma += (total > threshold) ? '1' : '0'
         epsilon += (total > threshold) ? '0' : '1'
     })
-    console.log(parseInt(gamma, 2) * parseInt(epsilon, 2))
+    return parseInt(gamma, 2) * parseInt(epsilon, 2)
+}
 
+export function lifeSupportRating(binaryNumbers: string[]): number {
     let binaryNumbers1 = [...binaryNumbers]
     let bitPosition = 0
     while (binaryNumbers1.length !== 1) {
@@ -45,7 +51,7 @@ export default function day03() {
         })
         bitPosition++
     }
-    console.log(parseInt(binaryNumbers1[0], 2) * parseInt(binaryNumbers2[0], 2))
+    return parseInt(binaryNumbers1[0], 2) * parseInt(binaryNumbers2[0], 2)
 }
 
 function mostCommonValue(input: string[], bitPosition: number): string {

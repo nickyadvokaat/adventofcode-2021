@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "npx tsc -w",
-    "run": "node dist/index",
+    "run": "node dist/src/index",
     "test": "jasmine-ts"
   },
   "keywords": [],
