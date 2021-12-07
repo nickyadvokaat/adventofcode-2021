@@ -1,0 +1,9 @@
+{
+  "all": true,
+  "check-coverage": true,
+  "exclude": [
+    "**/index.ts",
+    "**/*.spec.ts",
+    "coverage/**/*.js"
+  ]
+}
