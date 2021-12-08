@@ -11,53 +11,24 @@ function determineNumber(data: string): number {
     const split = data.split(' | ')
     const input = split[0].split(' ')
     const output = split[1].split(' ')
+    const m = Array(10).fill(undefined) as string[]
 
-    const one = input.filter(x => x.length === 2)[0]
-    const four = input.filter(x => x.length === 4)[0]
-    const seven = input.filter(x => x.length === 3)[0]
-    const eight = input.filter(x => x.length === 7)[0]
+    m[1] = input.filter(x => x.length === 2)[0]
+    m[4] = input.filter(x => x.length === 4)[0]
+    m[7] = input.filter(x => x.length === 3)[0]
+    m[8] = input.filter(x => x.length === 7)[0]
 
-    const nine = input.filter(x => ![one, four, seven, eight].includes(x)).filter(x => isSubsetOf(x, four))[0]
-    const E = charDiff(eight, nine)
-    const two = input.filter(x => x.length === 5 && isSubsetOf(x, E))[0]
-    const three = input.filter(x => ![one, two, four, seven, eight, nine].includes(x)).filter(x => isSubsetOf(x, seven) && !isSubsetOf(x, E))[0]
-    const five = input.filter(x => ![one, two, three, four, seven, eight, nine].includes(x)).filter(x => x.length === 5)[0]
-    const six = input.filter(x => ![one, two, three, four, five, seven, eight, nine].includes(x)).filter(x => isSubsetOf(x, five) && isSubsetOf(x, E))[0]
-    const zero = input.filter(x => ![one, two, three, four, five, six, seven, eight, nine].includes(x))[0]
+    m[9] = input.filter(x => ![m[1], m[4], m[7], m[8]].includes(x)).filter(x => isSubsetOf(x, m[4]))[0]
+    const E = charDiff(m[8], m[9])
+    m[2] = input.filter(x => x.length === 5 && isSubsetOf(x, E))[0]
+    m[3] = input.filter(x => ![m[1], m[2], m[4], m[7], m[8], m[9]].includes(x)).filter(x => isSubsetOf(x, m[7]) && !isSubsetOf(x, E))[0]
+    m[5] = input.filter(x => ![m[1], m[2], m[3], m[4], m[7], m[8], m[9]].includes(x)).filter(x => x.length === 5)[0]
+    m[6] = input.filter(x => ![m[1], m[2], m[3], m[4], m[5], m[7], m[8], m[9]].includes(x)).filter(x => isSubsetOf(x, m[5]) && isSubsetOf(x, E))[0]
+    m[0] = input.filter(x => ![m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8], m[9]].includes(x))[0]
 
     return Number(output.reduce((sum, current) => {
-        let c = ""
-        if (equalCharacters(current, zero)) {
-            c = "0"
-        }
-        if (equalCharacters(current, one)) {
-            c = "1"
-        }
-        if (equalCharacters(current, two)) {
-            c = "2"
-        }
-        if (equalCharacters(current, three)) {
-            c = "3"
-        }
-        if (equalCharacters(current, four)) {
-            c = "4"
-        }
-        if (equalCharacters(current, five)) {
-            c = "5"
-        }
-        if (equalCharacters(current, six)) {
-            c = "6"
-        }
-        if (equalCharacters(current, seven)) {
-            c = "7"
-        }
-        if (equalCharacters(current, eight)) {
-            c = "8"
-        }
-        if (equalCharacters(current, nine)) {
-            c = "9"
-        }
-        return sum + c
+        const index = m.findIndex(x => equalCharacters(current, x))
+        return sum + String(index)
     }, ""))
 }
 
