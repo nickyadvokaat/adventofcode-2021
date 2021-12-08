@@ -4,10 +4,10 @@ import {readFile} from "../util/fileUtil"
 export default function day08() {
     const input = readFile("08")
     console.log(countUniqueDigits(input))
-    console.log(input.reduce((sum, current) => sum + determineNumber(current), 0))
+    console.log(input.reduce((sum, current) => sum + decodeValues(current), 0))
 }
 
-function determineNumber(data: string): number {
+export function decodeValues(data: string): number {
     const split = data.split(' | ')
     const input = split[0].split(' ')
     const output = split[1].split(' ')
@@ -32,25 +32,19 @@ function determineNumber(data: string): number {
     }, ""))
 }
 
-function charDiff(superset: string, subset: string): string {
+export function charDiff(superset: string, subset: string): string {
     return superset.split('').filter(x => !subset.includes(x)).join('')
 }
 
 function isSubsetOf(superset: string, subset: string): boolean {
-    let result = true
-    subset.split('').forEach(x => {
-        if (!superset.includes(x)) {
-            result = false
-        }
-    })
-    return result
+    return !subset.split('').some(x => !superset.includes(x))
 }
 
-function equalCharacters(a: string, b: string): boolean {
-    return a.length === b.length && isSubsetOf(a, b)
+export function equalCharacters(a: string, b: string): boolean {
+    return a.length === b.length && isSubsetOf(a, b) && isSubsetOf(b, a)
 }
 
-function countUniqueDigits(input: string[]): number {
+export function countUniqueDigits(input: string[]): number {
     return input
         .map(x => x.split(' | ')[1])
         .reduce((sum, current) => {
